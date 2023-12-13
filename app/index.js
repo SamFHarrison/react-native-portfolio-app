@@ -10,29 +10,35 @@ import {
 } from "../components";
 
 const Home = () => {
-  const route = useRouter();
+  const router = useRouter();
 
   return (
-    <SafeAreaView style={styles.flex}>
-      <Stack.screen
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
+      <Stack.Screen
         options={{
           headerStyle: {
             backgroundColor: COLORS.lightWhite,
-            headerShadowVisible: false,
           },
+          headerShadowVisible: false,
+          headerLeft: () => (
+            <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
+          ),
+          headerRight: () => (
+            <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" />
+          ),
+          headerTitle: "",
         }}
       />
+
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={{ flex: 1, padding: SIZES.medium }}>
+          <Welcome />
+          <Popularjobs />
+          <Nearbyjobs />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  flex: {
-    flex: 1,
-  },
-  bgLightWhite: {
-    backgroundColor: COLORS.lightWhite,
-  },
-});
 
 export default Home;
